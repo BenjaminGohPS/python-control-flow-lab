@@ -249,10 +249,87 @@ def determine_season():
                 season = 'Fall'
                 
          
-        print(f'{month} {day} is in {season}.')
+        print(f'{month} {day:02d} is in {season}.')
         break
 
 
 # Call the function
-determine_season()
+# determine_season()
 
+
+
+# Exercise 7: Number Guessing Game
+#
+# Write a Python function named `guess_number` that allows a user to guess a predetermined number within a range.
+#
+# Requirements:
+# - Set a fixed number as the target for guessing (e.g., 42).
+# - Prompt the user to guess a number within a range (e.g., 1 to 100).
+# - Allow the user to guess up to five times.
+# - After each guess, use conditional statements with AND, OR, and NOT to give the user hints like:
+#   - "Guess is too low" or "Guess is too high."
+#   - "Last chance!" when they are on their fifth guess.
+# - Print "Congratulations, you guessed correctly!" if they guess the number.
+# - Print "Sorry, you failed to guess the number in five attempts." if they do not succeed.
+#
+# Hints:
+# - Use a for loop with a range to limit guesses to five.
+# - Use logical AND, OR, and NOT to check conditions and provide appropriate feedback.
+
+def guess_number():
+    # Your control flow logic goes here
+    answer = 42
+    
+    while True:
+        try:
+            guess = int(input('I am thinking of a number between 1 to 100. You have 5 tries. Make a guess!: '))
+
+            if guess > 100:
+                print("Invalid input. Please key a number between 1-100 only")
+                continue
+
+            for x in range(6):
+            
+                if x == 1 and guess == answer:
+                    print(f'Wow, your guess of {guess}, is spot on. Are you a mind-reader?')
+                    break
+                elif x == 1 and guess != answer:                  
+                    if guess < answer:
+                        guess = int(input(f'Hint: Your guess of of {guess} is too low! 4 more tries!: '))
+                        
+                    else:
+                        guess = int(input(f'Hint: Your guess of of {guess} is too high! 4 more tries!: '))
+                        
+                elif x == 2 and guess != answer:
+                    if guess < answer:
+                        guess = int(input(f'Hint: Your guess of of {guess} is too low! 3 more tries!: '))
+                        
+                    else:
+                        guess = int(input(f'Hint: Your guess of of {guess} is too low! 3 more tries!: '))
+                        
+                elif x == 3 and guess != answer:
+                    if guess < answer:
+                        guess = int(input(f'Hint: Your guess of of {guess} is too low! 2 more tries!: '))
+                    else:
+                        guess = int(input(f'Hint: Your guess of of {guess} is too low! 2 more tries!: '))
+
+                elif x == 4 and guess != answer:
+                    if guess < answer:
+                        guess = int(input(f'Hint: Your guess of of {guess} is too low! Last chance!: '))
+                    else:
+                        guess = int(input(f'Hint: Your guess of of {guess} is too high! Last chance!: '))
+                elif x == 5 and guess != answer:
+                    print("Sorry, you failed to guess the number in five attempts.")
+                    return
+                elif guess == answer:
+                    print(f'Congratulations, your guess of {guess}, is correct')
+                    return
+
+        except ValueError:
+                print("Invalid input. Please key a number between 1-100 only")
+                continue
+ 
+
+
+# Call the function
+guess_number()
